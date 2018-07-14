@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Middleware\RedirectIfAuthenticated;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,4 +27,4 @@ Route::middleware('auth') -> group( function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('RedirectIfAuthenticated');
