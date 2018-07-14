@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Middleware\RedirectIfAuthenticated;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,7 +13,7 @@ use App\Http\Middleware\RedirectIfAuthenticated;
 
 Route::get('/', function () {
     return view('main');
-});
+})->middleware('guest');
 
 Route::middleware('auth') -> group( function () {
     Route::prefix('/currencies') -> group( function () {
@@ -27,4 +25,8 @@ Route::middleware('auth') -> group( function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('RedirectIfAuthenticated');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('guest');
+
+// OAuth Routes
+Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');
+Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');
