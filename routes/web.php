@@ -15,9 +15,14 @@ Route::get('/', function () {
     return view('main');
 });
 
-Route::prefix('/currencies') -> group( function () {
-    Route::get('/add', 'CurrencyController@add')->name('currencies.add'); 
-    Route::get('/{id}/delete', 'CurrencyController@delete')->name('currencies.delete'); 
+Route::middleware('auth') -> group( function () {
+    Route::prefix('/currencies') -> group( function () {
+        Route::get('/add', 'CurrencyController@add')->name('currencies.add'); 
+        Route::get('/{id}/delete', 'CurrencyController@delete')->name('currencies.delete'); 
+    });
+    Route::resource('currencies', 'CurrencyController')->except(['create,destroy']); 
 });
 
-Route::resource('currencies', 'CurrencyController')->except(['create,destroy']); 
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
