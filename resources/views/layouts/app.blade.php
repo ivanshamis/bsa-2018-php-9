@@ -77,7 +77,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-8">
-                        <h1>@yield('content-title')</h1>
+                        <h4>@yield('content-title')</h4>
                         @yield('content')
                     </div>
                 </div>

@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('main');
-});
+})->name('main');
 
 Route::middleware('auth') -> group( function () {
     Route::prefix('/currencies') -> group( function () {

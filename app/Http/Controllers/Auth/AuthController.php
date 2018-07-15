@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    protected $redirectTo = '/';
+    protected $redirectTo = '/currencies';
 
     public function __construct()
     {

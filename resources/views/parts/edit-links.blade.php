@@ -1,6 +1,7 @@
 @can('update', $currency)
-    <button class="edit-button" onclick="location.href='{{ route('currencies.edit', 
-        ['id' => $currency['id']]) }}'" type="button">Edit</button>
+    <div>
+        <a href="{{ route('currencies.edit', ['id' => $currency['id']]) }}">Edit</a>
+    </div>
 @endcan
 
 @can('delete', $currency)
