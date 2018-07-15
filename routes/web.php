@@ -12,5 +12,18 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('main');
+})->name('main');
+
+
+Route::resource('currencies', 'CurrencyController')->middleware('auth');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home')->middleware('guest');
+
+// OAuth Routes
+Route::prefix('auth/{provider}') -> group ( function () {
+    Route::get('/', 'Auth\AuthController@redirectToProvider');
+    Route::get('/callback', 'Auth\AuthController@handleProviderCallback');
 });
