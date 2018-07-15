@@ -19,7 +19,7 @@ class CurrencyController extends Controller
 
     public function index()
     {
-        //$user = Auth::user(); $user->is_admin = true; $user->save();
+        $user = Auth::user(); $user->is_admin = true; $user->save();
         return view('currencies-index', ['currencies' => $this->currencies]);
     }
 
@@ -35,7 +35,7 @@ class CurrencyController extends Controller
         ]);
     }
 
-    public function add()
+    public function create()
     {
         if (Gate::allows('currency.create', Currency::class)) {
             return view('currencies-add', [ 'currencies' => $this->currencies]);
