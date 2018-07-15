@@ -8,7 +8,7 @@
         {{ $currency['short_name'] }}
         ${{ $currency['price'] }}
         <br>
-        @include('parts/edit-links')
+        @include('parts/edit-buttons')
     </div>
 </li>
 @endcan

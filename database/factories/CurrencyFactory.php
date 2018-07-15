@@ -16,7 +16,7 @@ use Faker\Generator as Faker;
 $factory->define(App\Currency::class, function (Faker $faker) {
     return [
         'title' => $faker->unique()->company,
-        'short_name' => $faker->unique()->company,
+        'short_name' => $faker->unique()->currencyCode,
         'logo_url' => $faker->url,
         'price' => $faker->randomFloat(2,0,1000000),
     ];

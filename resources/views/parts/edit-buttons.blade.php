@@ -1,9 +1,13 @@
 @can('update', $currency)
-    <button class="edit-button" onclick="location.href='{{ route('currencies.edit', 
-        ['id' => $currency['id']]) }}'" type="button">Edit</button>
+    <div>
+        <a href="{{ route('currencies.edit', ['id' => $currency['id']]) }}">Edit</a>
+    </div>
 @endcan
 
 @can('delete', $currency)
-    <button class="delete-button" onclick="location.href='{{ route('currencies.delete', 
-        ['id' => $currency['id']]) }}'" type="button">Delete</button>
-@endcan 
+    <form method="POST" action="{{ route('currencies.update', ['id'=>$currency['id']]) }}">
+        @method('DELETE')
+        {{ csrf_field() }}
+        <button type="submit" class="btn btn-primary">Delete</button>
+    </form>
+@endcan

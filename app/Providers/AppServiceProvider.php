@@ -3,13 +3,15 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use URL;
+use Illuminate\Support\Facades\Route;
 
 class AppServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        //
+        Route::resourceVerbs([
+            'create' => 'add',
+        ]);
     }
 
     /**

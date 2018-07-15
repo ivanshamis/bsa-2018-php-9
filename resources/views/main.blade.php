@@ -4,8 +4,8 @@
 
 @section('content')
     @guest
-        <a href="{{ route('currencies.index') }}">Login to currency editor</a>
+        Please <a href="{{ route('currencies.index') }}">login</a> to view currencies.
     @else
-        <a href="{{ route('currencies.index') }}">Currency editor</a>
+        You can view <a href="{{ route('currencies.index') }}">currencies</a> now!
     @endguest
 @endsection

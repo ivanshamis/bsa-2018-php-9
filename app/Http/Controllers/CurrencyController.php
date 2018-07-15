@@ -19,9 +19,7 @@ class CurrencyController extends Controller
 
     public function index()
     {
-        //$user = Auth::user();
-        //$user->is_admin = true;
-        //$user->save();
+        //$user = Auth::user(); $user->is_admin = true; $user->save();
         return view('currencies-index', ['currencies' => $this->currencies]);
     }
 
@@ -64,7 +62,7 @@ class CurrencyController extends Controller
         }
     }
 
-    public function delete(int $id)
+    public function destroy(int $id)
     {
         $currency = Currency::find($id);
         if ($currency===NULL) {

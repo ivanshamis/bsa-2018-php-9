@@ -10,5 +10,5 @@
          {{ $currency['short_name'] }}
          ${{ $currency['price'] }}
          <br>
-         @include('parts/edit-links')
+         @include('parts/edit-buttons')
 @endsection

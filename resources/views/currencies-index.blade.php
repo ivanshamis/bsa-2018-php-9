@@ -1,14 +1,14 @@
-@extends('layouts.app')
+@extends('main')
 
 @section('title', 'Currency market')
 
-@section('header')
-    @include('parts/currencies-navbar')    
+@section('menu')
+    @include('parts/currencies-menu')    
 @endsection
 
 @section('content-title', 'Currency market')
 
-@section('content') 
+@section('content')
                 @if (count($currencies) === 0)
                 <div class="alert alert-warning" role="alert">
                     <h4 class="alert-heading">No currencies</h4>

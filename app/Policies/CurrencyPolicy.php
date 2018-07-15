@@ -12,7 +12,7 @@ class CurrencyPolicy
 
     public function view(User $user, Currency $currency)
     {
-        return true;
+        return ($user!==NULL);
     }
 
     public function create(User $user)
