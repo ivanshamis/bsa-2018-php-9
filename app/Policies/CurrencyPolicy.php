@@ -10,9 +10,9 @@ class CurrencyPolicy
 {
     use HandlesAuthorization;
 
-    public function view(User $user, Currency $currency)
+    public function view(?User $user, Currency $currency = NULL)
     {
-        return ($user!==NULL);
+        return (($user!==NULL) and ($currency!==NULL));
     }
 
     public function create(User $user)
@@ -20,13 +20,13 @@ class CurrencyPolicy
         return $user->isAdmin();
     }
 
-    public function update(User $user, Currency $currency)
+    public function update(User $user, Currency $currency = NULL)
     {
-        return $user->isAdmin();
+        return (($user->isAdmin()) and ($currency!==NULL));
     }
 
-    public function delete(User $user, Currency $currency)
+    public function delete(User $user, Currency $currency = NULL)
     {
-        return $user->isAdmin();
+        return (($user->isAdmin()) and ($currency!==NULL));
     }
 }

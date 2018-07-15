@@ -2,6 +2,8 @@
 
 @section('title', 'Currency market')
 
+@section('content-title', 'Currency market')
+
 @section('content')
     @guest
         Please <a href="{{ route('currencies.index') }}">login</a> to view currencies.
