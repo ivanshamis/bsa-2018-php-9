@@ -10,9 +10,9 @@ class CurrencyPolicy
 {
     use HandlesAuthorization;
 
-    public function view(?User $user, Currency $currency = NULL)
+    public function view(User $user, Currency $currency = NULL)
     {
-        return (($user!==NULL) and ($currency!==NULL));
+        return ($currency!==NULL);
     }
 
     public function create(User $user)
