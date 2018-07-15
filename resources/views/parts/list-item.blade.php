@@ -1,3 +1,4 @@
+@can('view', $currency)
 <li class="media my-4">
     <img class="d-flex mr-3 img-fluid" src="{{ $currency['logo_url'] }}">
     <div class="media-body">
@@ -10,3 +11,4 @@
         @include('parts/edit-buttons')
     </div>
 </li>
+@endcan

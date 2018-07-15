@@ -5,7 +5,9 @@
     </div>
     <div class="navbar-nav">
          @each('parts/nav-item', $currencies, 'currency')
+         @can('create', App\Currency::class)
          <a class="nav-item nav-link active" href="{{ route('currencies.add') }}">Add</a>
+         @endcan
     </div>
   </div>
 </nav>

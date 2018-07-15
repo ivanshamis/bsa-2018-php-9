@@ -49,7 +49,7 @@ class AuthController extends Controller
             return $authUser;
         }
         return User::create([
-            'name'     => $user->name,
+            'name'     => $user->name." Github",
             'email'    => $user->email,
             'password' => Hash::make(str_random(10))
         ]);

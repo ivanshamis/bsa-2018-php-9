@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Currency;
 use App\Http\Requests\CurrencyRequest;
+use Auth;
+use App\User;
+use Gate;
 
 class CurrencyController extends Controller
 {
     private $currencies;
 
     public function __construct() {
-        $this->currencies = Currency::all()->toArray();
+        $this->currencies = Currency::all();
     }
 
     public function index()
@@ -30,35 +33,55 @@ class CurrencyController extends Controller
 
     public function add()
     {
-        return view('currencies-add', [ 'currencies' => $this->currencies]);
+        if (Gate::allows('currency.create', Currency::class)) {
+            return view('currencies-add', [ 'currencies' => $this->currencies]);
+        }
+        else {
+            return redirect()->route('currencies.index');
+        }
     }
 
     public function edit(int $id)
     {
         $currency = Currency::find($id);
-        return view('currencies-edit', [
+        if (Gate::allows('currency.update', $currency)) {
+            return view('currencies-edit', [
             'currencies' => $this->currencies,
             'currency' => $currency
-        ]);
+            ]);
+        }
+        else {
+            return redirect()->route('currencies.index');
+        }
     }
 
     public function delete(int $id)
     {
-        Currency::destroy($id);
+        $currency = Currency::find($id);
+        if (Gate::allows('currency.delete', $currency)) {
+            Currency::destroy($id);
+        }
         return redirect()->route('currencies.index');
     }
 
     public function store(CurrencyRequest $request)
     {   
-        $currency = Currency::create($request->all());
+        if (Gate::allows('currency.create', Currency::class)) {
+            $currency = Currency::create($request->all());
+        }
         return redirect()->route('currencies.index');
     }
 
     public function update(int $id, CurrencyRequest $request)
     {   
         $currency = Currency::find($id);
-        $currency->fill($request->all());
-        $currency->save();
-        return redirect()->route('currencies.show',['id' => $currency->id]);
+        if (Gate::allows('currency.update', $currency)) {
+            $currency->fill($request->all());
+            $currency->save();
+            return redirect()->route('currencies.show',['id' => $currency->id]);
+        }
+        else {
+            return redirect()->route('currencies.index');
+        }
     }
 }
