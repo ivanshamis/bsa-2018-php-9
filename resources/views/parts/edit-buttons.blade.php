@@ -1,13 +1,17 @@
 @can('update', $currency)
-    <div>
-        <a href="{{ route('currencies.edit', ['id' => $currency['id']]) }}">Edit</a>
-    </div>
+<div class="form-group">
+    <a class="edit-button btn btn-primary"
+    href="{{ route('currencies.edit', ['id' => $currency['id']]) }}">Edit<a/>
+</div>
 @endcan
 
 @can('delete', $currency)
-    <form method="POST" action="{{ route('currencies.update', ['id'=>$currency['id']]) }}">
-        @method('DELETE')
-        {{ csrf_field() }}
-        <button type="submit" class="btn btn-primary">Delete</button>
-    </form>
+<div class="form-group">
+    {!! Form::open([
+        'route' => ['currencies.destroy', $currency['id']],
+        'method' => 'DELETE'
+    ]) !!}
+    <button type="submit" class="delete-button btn btn-primary">Delete</button>
+    {!! Form::close() !!}
+</div>
 @endcan
