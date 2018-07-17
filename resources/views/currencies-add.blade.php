@@ -6,8 +6,10 @@
 
 @section('content')
     <div class="media-body">
-    <form method="POST" action="{{ route('currencies.store') }}">
-        @include('parts/currency-form')       
-    </form>
+    {!! Form::open(['route' => ['currencies.store']]) !!}
+    
+    @include('parts/currency-form')       
+    
+    {!! Form::close() !!}
     </div>
 @endsection

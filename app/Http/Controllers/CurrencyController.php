@@ -8,18 +8,18 @@ use App\Http\Requests\CurrencyRequest;
 use Auth;
 use App\User;
 use Gate;
+use Illuminate\Database\Eloquent\Collection;
 
 class CurrencyController extends Controller
 {
-    private $currencies;
-
-    public function __construct() {
-        $this->currencies = Currency::all();
+    private function getAllCurrencies(): Collection
+    {
+        return Currency::all();
     }
 
     public function index()
     {
-        return view('currencies-index', ['currencies' => $this->currencies]);
+        return view('currencies-index', ['currencies' => $this->getAllCurrencies()]);
     }
 
     public function show(int $id)
@@ -27,7 +27,7 @@ class CurrencyController extends Controller
         $currency = Currency::find($id);
         if (Gate::allows('currency.view', $currency)) {
             return view('currencies-show', [
-                'currencies' => $this->currencies,
+                'currencies' => $this->getAllCurrencies(),
                 'currency' => $currency
             ]);
         }
@@ -39,7 +39,7 @@ class CurrencyController extends Controller
     public function create()
     {
         if (Gate::allows('currency.create', Currency::class)) {
-            return view('currencies-add', [ 'currencies' => $this->currencies]);
+            return view('currencies-add', [ 'currencies' => $this->getAllCurrencies()]);
         }
         else {
             return redirect()->route('main');
@@ -51,7 +51,7 @@ class CurrencyController extends Controller
         $currency = Currency::find($id);
         if (Gate::allows('currency.update', $currency)) {
             return view('currencies-edit', [
-            'currencies' => $this->currencies,
+            'currencies' => $this->getAllCurrencies(),
             'currency' => $currency
             ]);
         }
